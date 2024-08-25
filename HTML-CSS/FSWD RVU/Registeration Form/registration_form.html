@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign up to Form</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    <script type="text/javascript" src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            background-color: #fff;
+            width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"], input[type="password"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        label a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        label a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            text-align: center;
+        }
+
+        .button input[type="submit"] {
+            background-color: #0066cc;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button input[type="submit"]:hover {
+            background-color: #004999;
+        }
+
+        .output {
+            background-color: #fff;
+            width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .output h2 {
+            text-align: center;
+            color: #444;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .output p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" target="#" onsubmit="return validate()">
+        <h1>Sign up to Form</h1>
+        <p>To be able to use all features of website  , you will need an account. Fill out the form below to create a new account if you don't have one yet.</p>
+        
+        <label for="name">Name</label><br>
+        <input type="text" name="name" id="name"><br>
+        
+        <label for="email">Email</label><br>
+        <input type="text" name="email" id="email"><br>
+        
+        <label for="retype_email">Retype email</label><br>
+        <input type="text" name="retype_email" id="retype_email"><br>
+        
+        <label for="phone">Phone Number</label><br>
+        <input type="text" name="phone" id="phone"><br>
+        
+        <label for="age">Age</label><br>
+        <input type="number" name="age" id="age" min="18" max="100"><br>
+        
+        <label for="password">Create a password</label><br>
+        <input type="password" name="password" id="password"><br>
+        
+        <label for="retype_password">Retype password</label><br>
+        <input type="password" name="retype_password" id="retype_password"><br>
+        
+        <label>
+          <input type="checkbox" name="terms" id="terms"> By signing up to {this}, you agree to the 
+           <a href="#service">Terms of Service</a> and <a href="#policy">Privacy Policy</a>.
+        </label><br><br>
+            
+        <div class="button">
+          <input type="submit" value="Set Up Account">
+        </div>
+    </form>
+
+    <div class="output" id="output">
+        <h2>Account Details</h2>
+        <p><strong>Name:</strong> <span id="output_name"></span></p>
+        <p><strong>Email:</strong> <span id="output_email"></span></p>
+        <p><strong>Phone Number:</strong> <span id="output_phone"></span></p>
+        <p><strong>Age:</strong> <span id="output_age"></span></p>
+    </div>
+
+    <script>
+        function validate() {  
+            var result = "";    
+            result += validateName();     
+            result += validateEmail();
+            result += validatePhone();
+            result += validateAge();
+            result += validatePassword();
+            result += validateTerms();
+            
+            if (result == "") {
+                showOutput();
+                return false;  // Prevent form submission
+            }
+            
+            alert("Validation Result:\n\n" + result);
+            return false;    
+        }
+
+        function validateName() {
+            var name = document.getElementsByName("name")[0].value;
+            if (name.length <= 3)
+                return "Name should be at least three characters.\n";    
+            return "";
+        }
+
+        function validatePassword() {
+            var password = valueOf("password");
+            var retype = valueOf("retype_password");
+            
+            if (password.length <= 6) 
+                return "Password should be at least 6 characters.\n";
+            
+            if (password != retype) 
+                return "Passwords do not match.\n";    
+            return "";
+        }
+
+        function validateEmail() {
+            var email = valueOf("email");
+            var retype = valueOf("retype_email");
+            
+            if (email.indexOf('@') == -1) 
+                return "Email should be a valid address.\n";
+            
+            if (email != retype)
+                return "Email addresses do not match.\n";
+            return "";    
+        }
+
+        function validatePhone() {
+            var phone = valueOf("phone");
+            var phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone))
+                return "Phone number should be 10 digits.\n";
+            return "";
+        }
+
+        function validateAge() {
+            var age = valueOf("age");
+            if (age < 18 || age > 100)
+                return "Age should be between 18 and 100.\n";
+            return "";
+        }
+
+        function validateTerms() {
+            var terms = document.getElementsByName("terms")[0];
+            if (!terms.checked)
+                return "Please accept the Terms of Service and Privacy Policy.";    
+            return "";
+        }
+
+        function valueOf(name) {
+            return document.getElementsByName(name)[0].value;
+        }
+
+        function showOutput() {
+            document.getElementById("output_name").textContent = valueOf("name");
+            document.getElementById("output_email").textContent = valueOf("email");
+            document.getElementById("output_phone").textContent = valueOf("phone");
+            document.getElementById("output_age").textContent = valueOf("age");
+
+            document.getElementById("output").style.display = "block";
+        }
+    </script>
+</body>
+</html>

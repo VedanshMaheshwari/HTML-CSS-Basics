@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cafe Menu</title>
+    <link href="ecommerce.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="#">Home</a>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Menu</a>
+        <div class="dropdown-content">
+          <a href="#coffee-section">Coffee</a>
+          <a href="#desserts-section">Desserts</a>
+          <a href="#specials-section">Specials</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">About</a>
+        <div class="dropdown-content">
+          <a href="#about-us">About Us</a>
+          <a href="#our-team">Our Team</a>
+          <a href="#contact-us">Contact Us</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Order</a>
+        <div class="dropdown-content">
+          <a href="#order-summary">Summary</a>
+          <a href="#place-order">Place Order</a>
+          <a href="#track-order">Track Order</a>
+        </div>
+      </div>
+    </nav>
+    <div class="menu">
+      <main>
+        <h1>MOCHA CAFE</h1>
+        <p class="established">Est. 2024</p>
+        <hr>
+        <section id="coffee-section">
+          <h2>Coffee</h2>
+          <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/coffee.jpg" alt="coffee icon"/>
+          <!-- Coffee Items -->
+          <!-- Existing Coffee Items -->
+        </section>
+        <section id="desserts-section">
+          <h2>Desserts</h2>
+          <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/pie.jpg" alt="pie icon"/>
+          <!-- Dessert Items -->
+          <!-- Existing Dessert Items -->
+        </section>
+        <section id="specials-section">
+          <h2>Specials</h2>
+          <!-- <img src="https://cdn.freecodecamp.org/curriculum/css-cafe/specials.jpg" alt="specials icon"/> -->
+          <!-- Specials Items -->
+          <article class="item">
+            <input type="checkbox" class="order-item" data-price="5.00" id="espresso-shot"/>
+            <label for="espresso-shot">
+              <p class="special">Espresso Shot</p><p class="price">5.00</p>
+            </label>
+          </article>
+          <article class="item">
+            <input type="checkbox" class="order-item" data-price="6.00" id="cold-brew"/>
+            <label for="cold-brew">
+              <p class="special">Cold Brew</p><p class="price">6.00</p>
+            </label>
+          </article>
+          <article class="item">
+            <input type="checkbox" class="order-item" data-price="7.00" id="iced-latte"/>
+            <label for="iced-latte">
+              <p class="special">Iced Latte</p><p class="price">7.00</p>
+            </label>
+          </article>
+        </section>
+        <hr class="bottom-line">
+        <footer id="about-us">
+          <p>
+            <a href="https://www.linkedin.com/in/vedansh-maheshwari-938510245/" target="_blank">Vedansh Maheshwari</a>
+          </p>
+          <p class="address">Bengaluru</p>
+        </footer>
+      </main>
+      <div class="order-summary" id="order-summary">
+        <h2>Order Summary</h2>
+        <ul id="order-list"></ul>
+        <p>Total: $<span id="total-amount">0.00</span></p>
+        <button id="place-order">Place Order</button>
+      </div>
+    </div>
+    <script src="ecommerce.js"></script>
+  </body>
+</html>
