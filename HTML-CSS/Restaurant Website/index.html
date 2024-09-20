@@ -159,7 +159,7 @@
             
             if (result == "") {
                 showOutput();
-                return false;  // Prevent form submission
+                return false; 
             }
             
             alert("Validation Result:\n\n" + result);
@@ -224,11 +224,11 @@
         }
 
         function showOutput() {
+
             document.getElementById("output_name").textContent = valueOf("name");
             document.getElementById("output_email").textContent = valueOf("email");
             document.getElementById("output_phone").textContent = valueOf("phone");
             document.getElementById("output_age").textContent = valueOf("age");
-
             document.getElementById("output").style.display = "block";
         }
     </script>
