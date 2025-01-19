@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study Time Table</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Study Time Table</h1>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>9.00-10.00</th>
+            <th>10.00-11.00</th>
+            <th>11.00-12.00</th>
+            <th>1.00-2.00</th>
+            <th>2.00-3.00</th>
+            <th>3.00-4.00</th>
+        </tr>
+        <tr>
+            <td>Monday</td>
+            <td>NS</td>
+            <td>NS</td>
+            <td>CD</td>
+            <td>CD</td>
+            <td>Break</td>
+            <td>English</td>
+        </tr>
+        <tr>
+            <td>Tuesday</td>
+            <td>NS</td>
+            <td>NS</td>
+            <td>CD</td>
+            <td>CD</td>
+            <td colspan="2">Computer Science Lab</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td>NS</td>
+            <td>NS</td>
+            <td>CD</td>
+            <td>CD</td>
+            <td>Break</td>
+            <td>English</td>
+        </tr>
+        <tr>
+            <td>Thursday</td>
+            <td>NS</td>
+            <td>NS</td>
+            <td>CD</td>
+            <td>CD</td>
+            <td>Break</td>
+            <td>English</td>
+        </tr>
+        <tr>
+            <td>Friday</td>
+            <td>NS</td>
+            <td>NS</td>
+            <td>CD</td>
+            <td>CD</td>
+            <td colspan="2">Computer Science Lab</td>
+        </tr>
+        <tr>
+            <td>Saturday</td>
+            <td>NS</td>
+            <td>NS</td>
+            <td>CD</td>
+            <td>CD</td>
+            <td>Break</td>
+            <td>English</td>
+        </tr>
+    </table>
+
+    <!-- Form Section -->
+    <form>
+        <h2>Fill in your details:</h2>
+
+        <!-- Name Input -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <br><br>
+
+        <!-- Roll Number Input -->
+        <label for="roll">Roll Number:</label>
+        <input type="text" id="roll" name="roll" placeholder="Enter your roll number" required>
+        <br><br>
+
+        <!-- Domain Selection -->
+        <label for="domain">Choose Domain:</label>
+        <input type="radio" name="domain" id="btech" value="Btech">
+        <label for="btech">BTech (Hons.)</label>
+        <input type="radio" name="domain" id="bsc" value="Bsc">
+        <label for="bsc">BSc</label>
+        <br><br>
+
+        <!-- Subjects Selection -->
+        <label for="subjects">Choose your subjects:</label><br>
+        <input type="checkbox" id="ns" name="subjects" value="NS">
+        <label for="ns">Natural Science</label><br>
+        <input type="checkbox" id="cd" name="subjects" value="CD">
+        <label for="cd">Computer Design</label><br>
+        <input type="checkbox" id="eng" name="subjects" value="English">
+        <label for="eng">English</label><br>
+        <br>
+
+        <!-- Preferred Study Time -->
+        <label for="time">Preferred Study Time:</label>
+        <input type="time" id="time" name="time">
+        <br><br>
+
+        <!-- Date of Submission -->
+        <label for="date">Date of Submission:</label>
+        <input type="date" id="date" name="date">
+        <br><br>
+
+        <!-- Comments Section -->
+        <label for="comments">Additional Comments:</label><br>
+        <textarea id="comments" name="comments" rows="4" cols="50" placeholder="Enter any additional details here..."></textarea>
+        <br><br>
+
+        <!-- Submit and Reset Buttons -->
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>
