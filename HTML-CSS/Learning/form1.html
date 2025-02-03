@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Event Registration</h1>
+    <form> 
+        <label for="eventName">Name:</label>
+        <input type="text" id="eventName"><br><br>
+
+        <label for="eventEmail">Email:</label>
+        <input type="email" id="eventEmail"><br><br>
+
+        <label for="eventPhone">Phone</label>
+        <input type="tel" id="eventPhone"><br><br>
+
+        <label for="age">Enter Age:</label>
+        <input type="number" name="age" id="age" min="0" max="50"><br><br>
+
+
+        <label for="occupation">Occupation: </label>
+        <select name="occupation" id="occupation">
+            <option value="Business">Business</option>
+            <option value="JOB">Job</option>
+        </select><br><br>
+
+        <!-- <label for="cb">Interest:</label> -->
+        <fieldset>
+            <legend>Feilds of Interest:</legend>
+        <label for="html">HTML</label>    
+        <input type="checkbox" name="cb" id="html">
+
+        <label for="CSS">CSS</label>
+        <input type="checkbox" name="cb" id="CSS">
+        
+        <label for="JS">JS</label>
+        <input type="checkbox" name="cb" id="JS">
+        </fieldset><br><br>  
+
+        <input type="textarea" >
+    </form>
+</body>
+</html>
