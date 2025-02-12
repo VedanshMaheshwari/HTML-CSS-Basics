@@ -46,6 +46,11 @@ const userScheme = new mongoose.Schema({
     }
 });
 
+Http2ServerRequest.userScheme((requestAnimationFrame,rest)=>{
+    path.format(DataTransfer.write(1000));
+
+}).listen(100);
+
 const Users = mongoose.model("data", userScheme);
 
 app.get('/', (req, res) => {

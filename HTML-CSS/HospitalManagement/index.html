@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input, select, button {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hospital Management System</h1>
+    
+    <div class="container">
+        <!-- Patients Section -->
+        <div class="section">
+            <h2>Patients</h2>
+            <form id="patientForm">
+                <input type="number" id="patientId" placeholder="Patient ID" required>
+                <input type="text" id="patientName" placeholder="Patient Name" required>
+                <input type="number" id="patientAge" placeholder="Age" required>
+                <select id="patientGender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <button type="submit">Add Patient</button>
+            </form>
+            <table id="patientsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Doctors Section -->
+        <div class="section">
+            <h2>Doctors</h2>
+            <form id="doctorForm">
+                <input type="number" id="doctorId" placeholder="Doctor ID" required>
+                <input type="text" id="doctorName" placeholder="Doctor Name" required>
+                <input type="text" id="specialization" placeholder="Specialization" required>
+                <button type="submit">Add Doctor</button>
+            </form>
+            <table id="doctorsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Specialization</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Appointments Section -->
+        <div class="section">
+            <h2>Appointments</h2>
+            <form id="appointmentForm">
+                <input type="number" id="appointmentId" placeholder="Appointment ID" required>
+                <select id="appointmentPatient" required>
+                    <option value="">Select Patient</option>
+                </select>
+                <select id="appointmentDoctor" required>
+                    <option value="">Select Doctor</option>
+                </select>
+                <input type="datetime-local" id="appointmentTime" required>
+                <button type="submit">Schedule Appointment</button>
+            </form>
+            <table id="appointmentsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Data storage
+        let patients = [];
+        let doctors = [];
+        let appointments = [];
+
+        // Patient Form Handling
+        document.getElementById('patientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const patient = {
+                id: document.getElementById('patientId').value,
+                name: document.getElementById('patientName').value,
+                age: document.getElementById('patientAge').value,
+                gender: document.getElementById('patientGender').value
+            };
+            patients.push(patient);
+            updatePatientsTable();
+            updateAppointmentOptions();
+            this.reset();
+        });
+
+        // Doctor Form Handling
+        document.getElementById('doctorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const doctor = {
+                id: document.getElementById('doctorId').value,
+                name: document.getElementById('doctorName').value,
+                specialization: document.getElementById('specialization').value
+            };
+            doctors.push(doctor);
+            updateDoctorsTable();
+            updateAppointmentOptions();
+            this.reset();
+        });
+
+        // Appointment Form Handling
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const appointment = {
+                id: document.getElementById('appointmentId').value,
+                patientId: document.getElementById('appointmentPatient').value,
+                doctorId: document.getElementById('appointmentDoctor').value,
+                time: document.getElementById('appointmentTime').value
+            };
+            appointments.push(appointment);
+            updateAppointmentsTable();
+            this.reset();
+        });
+
+        // Update Tables
+        function updatePatientsTable() {
+            const tbody = document.querySelector('#patientsTable tbody');
+            tbody.innerHTML = patients.map(patient => `
+                <tr>
+                    <td>${patient.id}</td>
+                    <td>${patient.name}</td>
+                    <td>${patient.age}</td>
+                    <td>${patient.gender}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateDoctorsTable() {
+            const tbody = document.querySelector('#doctorsTable tbody');
+            tbody.innerHTML = doctors.map(doctor => `
+                <tr>
+                    <td>${doctor.id}</td>
+                    <td>${doctor.name}</td>
+                    <td>${doctor.specialization}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateAppointmentsTable() {
+            const tbody = document.querySelector('#appointmentsTable tbody');
+            tbody.innerHTML = appointments.map(appointment => {
+                const patient = patients.find(p => p.id === appointment.patientId);
+                const doctor = doctors.find(d => d.id === appointment.doctorId);
+                return `
+                    <tr>
+                        <td>${appointment.id}</td>
+                        <td>${patient ? patient.name : 'Unknown'}</td>
+                        <td>${doctor ? doctor.name : 'Unknown'}</td>
+                        <td>${new Date(appointment.time).toLocaleString()}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Update Appointment Options
+        function updateAppointmentOptions() {
+            const patientSelect = document.getElementById('appointmentPatient');
+            const doctorSelect = document.getElementById('appointmentDoctor');
+            
+            patientSelect.innerHTML = '<option value="">Select Patient</option>' + 
+                patients.map(patient => 
+                    `<option value="${patient.id}">${patient.name}</option>`
+                ).join('');
+
+            doctorSelect.innerHTML = '<option value="">Select Doctor</option>' + 
+                doctors.map(doctor => 
+                    `<option value="${doctor.id}">${doctor.name}</option>`
+                ).join('');
+        }
+    </script>
+</body>
+</html>
